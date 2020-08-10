@@ -5,12 +5,13 @@ class Count extends React.Component{
     constructor(){
         super()
         this.state={
-            count:'Fetch'
+            count:0
         }
         this.onAdd = this.onAdd.bind(this)
         this.onSubtract = this.onSubtract.bind(this)
+        
     }
-    componentDidMount(){
+    /*componentDidMount(){
         db.collection('number').onSnapshot((snap)=>{
             let changes = snap.docChanges();
             changes.forEach((change)=>{
@@ -18,8 +19,8 @@ class Count extends React.Component{
             }
             )
         })
-    }
-    async onAdd(e){
+    }*/
+    /*async onAdd(e){
         e.preventDefault();
         await db.collection("number").doc('1').update({count:counter_val.data().count + 1})
         console.log(counter_val.data().count)
@@ -35,7 +36,24 @@ class Count extends React.Component{
         this.setState({
             count: counter_val.data().count 
         });  
+    }*/
+    onAdd(e){
+        e.preventDefault();
+        this.setState(prevState=>{
+            return{
+            count: prevState.count + 1
+        }
+        });     
+
     }
+    onSubtract(e){
+        e.preventDefault();
+        this.setState(prevState=>{
+            return{
+            count: prevState.count - 1
+            }
+        }
+        )}
     render(){
         return(
             <>
